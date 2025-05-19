@@ -8,16 +8,20 @@ import (
 	"github.com/agnivade/levenshtein"
 )
 
+// Diff represents a text replacement operation with search and replace strings
+// that should be applied at a specific line position in a document.
 type Diff struct {
-	Line    int
-	Search  string
-	Replace string
+	Line    int     // 1-based line number where the search should start
+	Search  string  // Text to find in the document
+	Replace string  // Text to replace the found section with
 }
 
+// Edit represents a specific text edit operation with byte offsets
+// that can be applied to a document.
 type Edit struct {
-	Start int
-	End   int
-	Text  string
+	Start int    // Byte offset where the edit starts (inclusive)
+	End   int    // Byte offset where the edit ends (exclusive)
+	Text  string // New text to replace the section between Start and End
 }
 
 // Search tries to locate `diff.Search` inside `source`.
