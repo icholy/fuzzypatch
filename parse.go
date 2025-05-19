@@ -97,17 +97,20 @@ func (p *parser) read() token {
 func (p *parser) expect(typ tokenType) (token, error) {
 	tok := p.read()
 	if tok.Type != typ {
-		return token{}, fmt.Errorf("expected %s, got %s: line=%d: %q",
+		return token{}, fmt.Errorf("expected %s, got %s: %q (line %d))",
 			tokenTypeString(typ),
 			tokenTypeString(tok.Type),
-			tok.Line,
 			tok.Text,
+			tok.Line,
 		)
 	}
 	return tok, nil
 }
 
 func (p *parser) parseStartSearch() (int, error) {
+	for p.current.Type == textType && strings.TrimSpace(p.current.Text) == "" {
+		p.read()
+	}
 	tok, err := p.expect(startSearchType)
 	if err != nil {
 		return 0, err

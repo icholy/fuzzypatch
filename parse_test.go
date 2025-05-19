@@ -119,7 +119,7 @@ func TestParse(t *testing.T) {
 		},
 		{
 			name:  "multiple diff blocks",
-			input: "<<<<<<< SEARCH line:1\nfoo\n=======\nbar\n>>>>>>> REPLACE\n<<<<<<< SEARCH line:3\nbaz\n=======\nqux\n>>>>>>> REPLACE\n",
+			input: "<<<<<<< SEARCH line:1\nfoo\n=======\nbar\n>>>>>>> REPLACE\n\n<<<<<<< SEARCH line:3\nbaz\n=======\nqux\n>>>>>>> REPLACE\n",
 			diffs: []Diff{
 				{
 					Line:    1,
