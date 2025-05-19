@@ -146,7 +146,7 @@ func (p *parser) parseDiff() (Diff, error) {
 		p.read()
 	}
 	if _, err := p.expect(endReplaceType); err != nil {
-		return Diff{}, nil
+		return Diff{}, err
 	}
 	return diff, nil
 }
